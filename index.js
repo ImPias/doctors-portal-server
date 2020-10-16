@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-// const fileUpload = require('express-fileupload');
+const fileUpload = require('express-fileupload');
 const MongoClient = require('mongodb').MongoClient;
 require('dotenv').config()
 
@@ -11,8 +11,8 @@ const app = express()
 
 app.use(bodyParser.json());
 app.use(cors());
-// app.use(express.static('doctors'));
-// app.use(fileUpload());
+app.use(express.static('doctors'));
+app.use(fileUpload());
 
 const port = 5000;
 
@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
     const appointmentCollection = client.db("doctorsPortal").collection("appointments");
+    const doctorCollection = client.db("doctorsPortal").collection("doctors");
     
     app.post('/addAppointment', (req, res) => {
         const appointment = req.body;
@@ -32,9 +33,15 @@ client.connect(err => {
         })
     })
 
+    app.get('/appointments', (req, res) => {
+        appointmentCollection.find({})
+        .toArray((err, documents) => {
+            res.send(documents);
+        })
+    })
+
     app.post('/appointmentsByDate', (req, res) => {
         const date = req.body;
-        console.log(date);
         appointmentCollection.find({date: date.date})
         .toArray((err, documents) => {
             res.send(documents);
