@@ -6,8 +6,10 @@
 
 ## Features:
 *   Fix an appointment with your doctor.
-*   Store patient information.
-*   Review appointments.
+*   Store patients information.
+*   Store doctors information.
+*   Patients can review there appointments.
+*   Doctors can review all patients appointment.
 *   Check appointments information.
 *   Separate dashboard for patient and doctor.
 
@@ -15,13 +17,15 @@
 *   React.js
 *   Material-UI
 *   Bootstrap4
-*   CSS3
+*   CSS, CSS3
+*   HTML, HTML5
+*   Firebase Hosting
 
 ## Back-end Technology:
 *   Node.js
 *   Express.js
-*   Firebase Authentication
 *   MongoDB
-*   Heroku
+*   Firebase Authentication
+*   Heroku Hosting
 
 **[FRONT END REPOSITORY](https://github.com/ImPias/doctors-portal-client)**
